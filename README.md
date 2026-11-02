@@ -1,10 +1,10 @@
 # TeddyPups U.A.E. — Website Clone
 
-A high-performance clone of [puppy.instabizweb.com](https://puppy.instabizweb.com/) built with **Next.js 16 (App Router)**, **React 19**, **Tailwind CSS v4**, **Motion (Framer Motion v12)**, and **Lenis**.
+A clone of [puppy.instabizweb.com](https://puppy.instabizweb.com/) built with Next.js 16 (App Router), React 19, Tailwind CSS v4, Motion (Framer Motion v12), and Lenis.
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Install dependencies
@@ -20,7 +20,7 @@ npm start
 
 ---
 
-## 🛠️ Development Process and Project Structure
+## Development Process and Project Structure
 
 ### Development Process
 
@@ -98,7 +98,7 @@ insta-assignement/
 
 ---
 
-## 💻 Technologies and Tools Used
+## Technologies and Tools Used
 
 * **Next.js 16 (App Router):** Modern React framework leveraging Turbopack, Static Site Generation (SSG) for 42 puppy pages, Partial Prerendering (PPR), and React Server Actions.
 * **React 19:** Utilizing concurrent features, `<Suspense>` boundaries, and the latest server/client component paradigm.
@@ -111,9 +111,9 @@ insta-assignement/
 
 ---
 
-## 🤖 AI Tools Used and Exact Prompts Provided
+## AI Tools Used and Exact Prompts Provided
 
-Development was accelerated using AI pair-programming (Antigravity / Claude / Cursor). Below are the **exact prompts** used across the core development stages:
+Development was accelerated using AI pair-programming (Antigravity / Claude / Cursor). Below are the exact prompts used across the core development stages:
 
 ### Prompt 1: Architectural Scoping & Data Modeling
 > *"Analyze the reference website puppy.instabizweb.com. Structure a modern Next.js 16 App Router project with React 19, TypeScript, and Tailwind CSS v4. Create a comprehensive TypeScript interface for a puppy profile—covering breed, gender, origin, microchip status, health certifications, media assets (cover and gallery images), and SEO metadata. Generate a strongly typed JSON dataset for 42 puppies matching this schema."*
@@ -132,11 +132,11 @@ Development was accelerated using AI pair-programming (Antigravity / Claude / Cu
 
 ---
 
-## ⚙️ Key Implementation Decisions & Challenges Faced
+## Key Implementation Decisions & Challenges Faced
 
 ### Key Decisions
 1. **SSG over Client-Side Fetching:** Pre-rendering all 42 puppy routes (`/puppies/[slug]`) at build time ensures instantaneous page loads, zero database latency, and optimal SEO ranking.
-2. **Procedural SVG Mascot vs. Heavy 3D/Lottie:** Using pure SVG geometry and mathematical lerping (`driver.ts`) avoids multi-megabyte 3D bundles, keeping initial load times lightning fast.
+2. **Procedural SVG Mascot vs. Heavy 3D/Lottie:** Using pure SVG geometry and mathematical lerping (`driver.ts`) avoids multi-megabyte 3D bundles, keeping initial load times fast.
 3. **Server-Side Honeypot Validation:** The `sendEnquiry` Server Action validates form input server-side and checks a hidden `website` field to eliminate spam bots without requiring third-party captcha dependencies.
 
 ### Challenges Faced & Solutions
@@ -145,7 +145,7 @@ Development was accelerated using AI pair-programming (Antigravity / Claude / Cu
 
 ---
 
-## 🧪 Testing and Deployment
+## Testing and Deployment
 
 ### Testing Strategy
 * **Static Build Audit:** Verified that `npm run build` generates 53 static routes (including all 42 puppy pages) with zero TypeScript or ESLint warnings.
@@ -154,4 +154,4 @@ Development was accelerated using AI pair-programming (Antigravity / Claude / Cu
 * **Accessibility:** Verified keyboard navigation across tabs and confirmed that `prefers-reduced-motion` disables heavy animations.
 
 ### Deployment
-* Optimized for one-click deployment on **Vercel** with automatic edge caching, Turbopack bundling, and CDN media delivery.
+* Optimized for one-click deployment on Vercel with automatic edge caching, Turbopack bundling, and CDN media delivery.
