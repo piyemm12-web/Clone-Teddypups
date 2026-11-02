@@ -1,0 +1,134 @@
+.pup-stop {
+  pointer-events: none;
+}
+.pup-stop > .pup-buddy {
+  width: 100%;
+}
+html[data-pup] .pup-stop > .pup-buddy {
+  visibility: hidden;
+}
+.pup-layer {
+  z-index: 30;
+  pointer-events: none;
+  contain: layout paint style;
+  position: fixed;
+  inset: 0;
+  overflow: clip;
+}
+.pup-layer[data-front="false"] {
+  z-index: 15;
+}
+.pup-layer[data-anchor="bottom"] {
+  height: 100lvh;
+  top: auto;
+}
+.pup-probe {
+  visibility: hidden;
+  pointer-events: none;
+  width: 0;
+  height: 100svh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.pup-heart {
+  color: var(--color-toffee);
+  pointer-events: none;
+  text-shadow: 0 1px 0 var(--color-milk);
+  font-size: 1.35rem;
+  line-height: 1;
+  position: absolute;
+}
+.pup-actor {
+  will-change: transform;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.pup-actor__body {
+  transform-origin: 0 0;
+  width: 300px;
+}
+.pup-actor__body > svg {
+  width: 300px;
+  height: 240px;
+  display: block;
+}
+.pup-actor .pup-actor__body > svg :is(path, ellipse, circle) {
+  pointer-events: visiblePainted;
+  cursor: pointer;
+}
+.pup-bubble-at {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.pup-bubble {
+  border: 2.5px solid var(--color-cocoa);
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  font-family: var(--font-hand);
+  white-space: nowrap;
+  opacity: 0;
+  transform-origin: 30% 100%;
+  transition:
+    scale 0.4s var(--ease-pounce),
+    opacity 0.18s ease-out;
+  border-radius: 1.1rem 1.1rem 1.1rem 0.25rem;
+  padding: 0.3rem 0.85rem 0.35rem;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  translate: -50%;
+  scale: 0.4;
+  box-shadow: 2px 3px #2a170e2e;
+}
+.pup-bubble[data-show="true"] {
+  opacity: 1;
+  scale: 1;
+}
+.pup-prints {
+  z-index: 5;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+}
+.pup-buddy > svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.pup-buddy > .pup-bubble {
+  bottom: 84%;
+  left: 72%;
+}
+.pup-buddy[data-facing="left"] > .pup-bubble {
+  left: 28%;
+}
+.pup-buddy[data-live] > svg :is(path, ellipse, circle) {
+  pointer-events: visiblePainted;
+  cursor: pointer;
+}
+:is(.pup-buddy, .pup-actor) svg [opacity="0"],
+:is(.pup-buddy, .pup-actor) svg [opacity="0"] * {
+  pointer-events: none !important;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :is(.pup-buddy[data-live] > svg, .pup-actor svg) :is(path, ellipse, circle) {
+    cursor:
+      url(/cursor/paw-press.svg) 9 6,
+      pointer;
+  }
+}
+.pup-prints > svg {
+  opacity: 0;
+  width: 15px;
+  height: 15px;
+  fill: var(--color-toffee);
+  position: absolute;
+  top: 0;
+  left: 0;
+}

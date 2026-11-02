@@ -1,0 +1,297 @@
+.tp-meet__stage {
+  padding-top: clamp(4rem, 9vh, 7rem);
+  padding-bottom: clamp(3rem, 7vh, 5rem);
+  position: relative;
+}
+.tp-meet__head {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.25rem 2rem;
+  width: 100%;
+  max-width: 110rem;
+  margin-inline: auto;
+  display: flex;
+}
+.tp-meet__hall {
+  --floor-h: clamp(5rem, 13vh, 8rem);
+  margin-top: clamp(2rem, 5vh, 3.5rem);
+  position: relative;
+}
+.tp-meet__track {
+  padding-inline: var(--gutter);
+  grid-template-columns: repeat(auto-fill, minmax(min(10.5rem, 42vw), 1fr));
+  gap: 2.75rem 1.25rem;
+  max-width: 110rem;
+  margin-inline: auto;
+  display: grid;
+}
+.tp-meet__floor {
+  display: none;
+}
+.tp-meet__teddy {
+  right: var(--gutter);
+  width: clamp(8rem, 26vw, 11rem);
+  position: absolute;
+  top: clamp(-9.5rem, -20vw, -6rem);
+}
+@media (min-width: 640px) {
+  .tp-meet__track {
+    gap: 3.5rem 2rem;
+  }
+}
+.tp-meet[data-pinned] .tp-meet__stage {
+  height: 100vh;
+  padding-top: calc(var(--header-h) + clamp(1rem, 3vh, 2.5rem));
+  flex-direction: column;
+  padding-bottom: 0;
+  display: flex;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+.tp-meet[data-pinned] .tp-meet__hall {
+  flex: 1;
+}
+.tp-meet[data-pinned] .tp-meet__track {
+  left: 0;
+  bottom: var(--floor-h);
+  align-items: flex-end;
+  gap: clamp(4.5rem, 6vw, 7rem);
+  width: max-content;
+  max-width: none;
+  padding-inline: 38vw 12vw;
+  display: flex;
+  position: absolute;
+}
+.tp-meet[data-pinned] .tp-door {
+  width: var(--door-w, clamp(8rem, min(15vw, 24vh), 16rem));
+}
+.tp-meet[data-pinned] :is(.tp-door__name, .tp-door__meta) {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+}
+.tp-meet[data-pinned] .tp-door__name {
+  -webkit-line-clamp: 3;
+}
+.tp-meet[data-pinned] .tp-meet__floor {
+  height: var(--floor-h);
+  border-top: 3px solid var(--color-cocoa);
+  background:
+    linear-gradient(to bottom, #2a170e29, transparent 22%),
+    repeating-linear-gradient(
+        90deg,
+        transparent 0 calc(11rem - 2px),
+        #2a170e1f calc(11rem - 2px) 11rem
+      )
+      var(--floor-x, 0) 0 / auto,
+    linear-gradient(#e8b06a, #dc9a52);
+  display: block;
+  position: absolute;
+  inset: auto 0 0;
+  box-shadow: 0 -12px 0 -6px #f5d9a8;
+}
+.tp-meet[data-pinned] .tp-meet__teddy {
+  top: auto;
+  left: 14vw;
+  right: auto;
+  bottom: calc(var(--floor-h) * 0.42);
+  width: clamp(11rem, min(14vw, 24vh), 14rem);
+}
+.tp-door {
+  list-style: none;
+  position: relative;
+}
+.tp-door__link {
+  border-radius: 1rem;
+  text-decoration: none;
+  display: block;
+}
+.tp-door__plate {
+  text-align: center;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+.tp-door__name {
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  line-height: 1;
+  display: block;
+}
+.tp-door__meta {
+  color: var(--ink-soft);
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+}
+.tp-door__frame {
+  aspect-ratio: 4/5.2;
+  border: 3px solid var(--color-cocoa);
+  background: #3b2215;
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+  display: block;
+  position: relative;
+}
+.tp-door__way {
+  --door-open: 78deg;
+  perspective: 700px;
+  perspective-origin: 0;
+  border-radius: 999px 999px 0 0;
+  position: absolute;
+  inset: -3px -3px 0;
+  overflow: hidden;
+}
+.tp-door__room {
+  border-radius: inherit;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.tp-door__room img {
+  transition: scale 0.45s var(--ease-silk);
+}
+.tp-door__leaf {
+  border: 3px solid var(--color-cocoa);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 calc(25% - 1.5px),
+      #2a170e2e calc(25% - 1.5px) 25%
+    ),
+    var(--door);
+  transform-origin: 0;
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+  transition: transform 1.05s cubic-bezier(0.3, 1.32, 0.48, 1) 50ms;
+  position: absolute;
+  inset: 0;
+}
+.tp-door__leaf:before {
+  content: "";
+  border: 2.5px solid #fffdf847;
+  border-radius: 999px 999px 0.5rem 0.5rem;
+  position: absolute;
+  inset: 12% 14% 9%;
+}
+.tp-door__peephole {
+  color: #fffdf873;
+  width: 22%;
+  position: absolute;
+  top: 19%;
+  left: 50%;
+  translate: -50%;
+}
+.tp-door__knob {
+  aspect-ratio: 1;
+  border: 2.5px solid var(--color-cocoa);
+  background: var(--color-honey);
+  border-radius: 50%;
+  width: 0.85rem;
+  position: absolute;
+  top: 56%;
+  right: 11%;
+}
+.tp-door[data-open="true"] .tp-door__leaf {
+  transform: rotateY(var(--door-open));
+}
+.tp-door[data-open="true"] .tp-door__room img {
+  scale: 1.04;
+}
+.tp-door__tag {
+  z-index: 2;
+  border: 2px solid var(--color-cocoa);
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  border-radius: 999px;
+  padding: 0.05rem 0.65rem 0.15rem;
+  font-size: 0.9rem;
+  position: absolute;
+  top: 16%;
+  right: -0.7rem;
+  rotate: 7deg;
+  box-shadow: 2px 3px #2a170e33;
+}
+.tp-door__link:is(:hover, :focus-visible) .tp-door__leaf {
+  transform: rotateY(var(--door-open));
+}
+.tp-door__link:is(:hover, :focus-visible) .tp-door__name {
+  color: var(--color-toffee-deep);
+}
+.tp-door__frame--all {
+  background: 0 0;
+  border-style: dashed;
+  place-items: center;
+  display: grid;
+}
+.tp-door__all {
+  text-align: center;
+  text-decoration: underline;
+  -webkit-text-decoration-color: var(--color-toffee);
+  -webkit-text-decoration-color: var(--color-toffee);
+  -webkit-text-decoration-color: var(--color-toffee);
+  text-decoration-color: var(--color-toffee);
+  text-underline-offset: 0.18em;
+  padding: 1rem;
+  font-size: clamp(1.6rem, 2.4vw, 2.4rem);
+  line-height: 1;
+  text-decoration-thickness: 0.08em;
+}
+.tp-door--all {
+  align-self: stretch;
+  align-items: flex-end;
+  display: flex;
+}
+.tp-door--all .tp-door__link {
+  width: 100%;
+}
+.tp-door__frame:after {
+  content: "";
+  border: 3px solid var(--color-cocoa);
+  background: #dc9a52;
+  border-radius: 0.35rem;
+  height: 0.6rem;
+  position: absolute;
+  bottom: -0.6rem;
+  left: -0.55rem;
+  right: -0.55rem;
+}
+.tp-meet[data-pinned] .tp-door__frame:after {
+  display: none;
+}
+.tp-doors {
+  grid-template-columns: repeat(auto-fill, minmax(min(11.5rem, 40vw), 1fr));
+  gap: 3.25rem 1.5rem;
+  display: grid;
+}
+@media (min-width: 640px) {
+  .tp-doors {
+    gap: 4rem 2.25rem;
+  }
+}
+@supports (animation-timeline: view()) {
+  .tp-door__leaf {
+    animation: linear both tp-door-open;
+    animation-timeline: view();
+    animation-range: entry 55% cover 48%;
+  }
+  .tp-meet[data-pinned] .tp-door__leaf {
+    animation: none;
+  }
+}
+@keyframes tp-door-open {
+  0% {
+    transform: rotateY(0);
+  }
+  to {
+    transform: rotateY(var(--door-open));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tp-door__leaf {
+    transform: rotateY(var(--door-open)) !important;
+    animation: none !important;
+  }
+}

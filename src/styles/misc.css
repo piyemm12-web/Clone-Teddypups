@@ -1,0 +1,52 @@
+.tp-twinkle {
+  animation: 3.2s ease-in-out infinite tp-twinkle;
+}
+@keyframes tp-twinkle {
+  0%,
+  to {
+    opacity: 0.35;
+    transform: scale(0.8) rotate(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(20deg);
+  }
+}
+@keyframes tp-float {
+  0%,
+  to {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-8px) rotate(8deg);
+  }
+}
+.tp-gone-stamp {
+  transform: rotate(-10deg);
+}
+@supports (animation-timeline: view()) {
+  .tp-polaroid .tp-gone-stamp {
+    animation: linear both tp-stamp-thump;
+    animation-timeline: view();
+    animation-range: entry 30% cover 40%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tp-gone-stamp {
+    animation: none !important;
+  }
+}
+@keyframes tp-stamp-thump {
+  0% {
+    opacity: 0;
+    transform: scale(1.25) rotate(-22deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.94) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(-10deg);
+  }
+}

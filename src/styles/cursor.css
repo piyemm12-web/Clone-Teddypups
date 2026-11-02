@@ -1,0 +1,39 @@
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html,
+  body {
+    cursor:
+      url(/cursor/paw.svg) 9 6,
+      auto;
+  }
+  :is(
+    a,
+    button,
+    summary,
+    label[for],
+    [role="button"],
+    [role="tab"],
+    select,
+    input[type="checkbox"],
+    input[type="radio"],
+    input[type="submit"]
+  ) {
+    cursor:
+      url(/cursor/paw-press.svg) 9 6,
+      pointer;
+  }
+  :is(
+    input:not(
+      [type="checkbox"],
+      [type="radio"],
+      [type="submit"],
+      [type="range"]
+    ),
+    textarea,
+    [contenteditable="true"]
+  ) {
+    cursor: text;
+  }
+  :is(p, h1, h2, h3, h4, li, blockquote, figcaption, dd, dt) {
+    cursor: inherit;
+  }
+}

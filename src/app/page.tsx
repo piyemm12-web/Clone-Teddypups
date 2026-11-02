@@ -1,69 +1,74 @@
-import Image from "next/image";
+import { PupJourney } from "@/components/buddy/PupJourney";
+import { Chat } from "@/components/home/Chat";
+import { Dusk } from "@/components/home/Dusk";
+import { Hero } from "@/components/home/Hero";
+import { HomeCta } from "@/components/home/HomeCta";
+import { Meet } from "@/components/home/Meet";
+import { Night } from "@/components/home/Night";
+import { Passport } from "@/components/home/Passport";
+import { Paths } from "@/components/home/Paths";
+import { families, journey, meet, TONES } from "@/components/home/data";
+import { featuredTestimonial, getFamilyPhotos } from "@/lib/families";
+import { getAvailablePuppies } from "@/lib/puppies";
+import { site, whatsappHref } from "@/lib/site";
+import type { Puppy } from "@/lib/types";
 
+/** Breeds we have right now, most puppies first. */
+function breedsInStock(puppies: Puppy[]) {
+  const counts = new Map<string, { slug: string; name: string; n: number }>();
+  for (const pup of puppies)
+    for (const b of pup.breeds) {
+      const entry = counts.get(b.slug) ?? { ...b, n: 0 };
+      entry.n++;
+      counts.set(b.slug, entry);
+    }
+  return [...counts.values()].sort((a, b) => b.n - a.n).map(({ slug, name }) => ({ slug, name }));
+}
+
+/**
+ * The homepage is one day in Teddy's life: eight "scenes" from a bright
+ * morning to a cosy night, which the mascot walks through as you scroll.
+ */
 export default function Home() {
+  const puppies = getAvailablePuppies();
+  const flyer = puppies.find((p) => p.breed.startsWith("Korean")) ?? puppies[0];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <div data-page="home" className="tp-page">
+        <div data-section="hero">
+          <Hero puppies={puppies} />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div data-section="meet">
+          <Meet {...meet} puppies={puppies} tone={TONES.meet} />
         </div>
-      </main>
-    </div>
+        <div data-section="paths">
+          <Paths flyer={flyer} />
+        </div>
+        <div data-section="journey">
+          <Chat
+            {...journey}
+            tone={TONES.chat}
+            business={site.name}
+            greeting="Hi TeddyPups! I'd love to know more about your puppies."
+            whatsappHref={whatsappHref()}
+            breeds={breedsInStock(puppies)}
+          />
+        </div>
+        <div data-section="trust">
+          <Passport />
+        </div>
+        <div data-section="families">
+          <Dusk {...families} photos={getFamilyPhotos()} testimonial={featuredTestimonial} tone={TONES.dusk} />
+        </div>
+        <div data-section="questions">
+          <Night />
+        </div>
+        <div data-section="cta">
+          <HomeCta waiting={puppies[0]} />
+        </div>
+      </div>
+      <PupJourney />
+    </>
   );
 }
