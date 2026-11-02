@@ -153,5 +153,5 @@ Development was accelerated using AI pair-programming (Antigravity / Claude / Cu
 * **Server Action Validation:** Verified that malformed inputs, empty fields, and honeypot submissions are correctly handled.
 * **Accessibility:** Verified keyboard navigation across tabs and confirmed that `prefers-reduced-motion` disables heavy animations.
 
-### Deployment
-* Optimized for one-click deployment on Vercel with automatic edge caching, Turbopack bundling, and CDN media delivery.
+### Deployment and Local Serving
+* Production build is compiled and served locally using `npm run build` followed by `npm start` (listening on `http://localhost:3000`). All 53 pre-rendered pages, static media assets, and Server Actions execute directly on the local Node.js environment without external cloud hosting dependencies.
